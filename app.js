@@ -10,6 +10,62 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+inquirer
+.prompt ([
+    
+    // this will prompt you to pick the position needed for the task
+    // I will need to find a way to have it log to the prospective position
+
+    {
+        type: "list",
+        message: "What position are you looking for",
+        choices: [
+            'Engineer',
+            'Intern',
+            'Manager', 
+        ],
+        name: 'posititon '
+    },  {
+        type: "input",
+        message: "How can someone help contribute to the project?",
+        name: "contributors"
+
+    },  {
+        type: "input",
+        message: "How will this app be used?",
+        name: "user"
+    }, {
+        type: "input",
+        message: "What test instructions would you like to be included?",
+        name: "tests"
+    }, {
+        type: "input",
+        message: "What is your github user name?",
+        name: "github"
+    }, 
+
+    
+])
+
+.then(function(response){
+    
+    console.log(response)
+    
+    const answers = gm(response)
+    writeToFile("README.md", answers)
+    console.log(writeToFile)
+})
+
+// function to write README file
+function writeToFile(fileName, data) {
+    // console.log(fileName, data)
+    fs.writeFile(fileName, data, function (err) {
+        if (err) {
+            throw err;
+        };
+        
+    })
+}
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
