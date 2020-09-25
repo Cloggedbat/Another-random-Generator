@@ -23,7 +23,7 @@ const appStart = () => {
         // I will need to find a way to have it log to the prospective position
         {
             type: "list",
-            message: "What position are you looking for",
+            message: "What position are you looking for?",
             choices: [
                 'Engineer',
                 'Intern',
@@ -33,10 +33,10 @@ const appStart = () => {
         },
         {
             type: "input",
-            message: "",
-            name:
+            message: "What is the Interns name?",
+            name:"internsName",
             // look into validations 
-        }
+        },
     ])
 }
 
