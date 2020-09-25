@@ -1,6 +1,9 @@
+// Classes
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+const HTMLpg = require("./templets/main.html")
+
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
@@ -10,61 +13,31 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-inquirer
-.prompt ([
-    
-    // this will prompt you to pick the position needed for the task
-    // I will need to find a way to have it log to the prospective position
-
-    {
-        type: "list",
-        message: "What position are you looking for",
-        choices: [
-            'Engineer',
-            'Intern',
-            'Manager', 
-        ],
-        name: 'posititon '
-    },  {
-        type: "input",
-        message: "How can someone help contribute to the project?",
-        name: "contributors"
-
-    },  {
-        type: "input",
-        message: "How will this app be used?",
-        name: "user"
-    }, {
-        type: "input",
-        message: "What test instructions would you like to be included?",
-        name: "tests"
-    }, {
-        type: "input",
-        message: "What is your github user name?",
-        name: "github"
-    }, 
-
-    
-])
-
-.then(function(response){
-    
-    console.log(response)
-    
-    const answers = gm(response)
-    writeToFile("README.md", answers)
-    console.log(writeToFile)
-})
-
-// function to write README file
-function writeToFile(fileName, data) {
-    // console.log(fileName, data)
-    fs.writeFile(fileName, data, function (err) {
-        if (err) {
-            throw err;
-        };
+const appStart = () => {
+    // add what the team requirerments are/ how many are needed
+    console.log('Lets make a team')    
+    inquirer
+    .prompt ([
         
-    })
+        // this will prompt you to pick the position needed for the task
+        // I will need to find a way to have it log to the prospective position
+        {
+            type: "list",
+            message: "What position are you looking for",
+            choices: [
+                'Engineer',
+                'Intern',
+                'Manager', 
+            ],
+            name: 'posititon '
+        },
+        {
+            type: "input",
+            message: "",
+            name:
+            // look into validations 
+        }
+    ])
 }
 
 // Write code to use inquirer to gather information about the development team members,
@@ -89,3 +62,24 @@ function writeToFile(fileName, data) {
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
+
+// I belive that this is all bing dun in htmlRender.js
+// .then(function(response){
+    
+//     console.log(response)
+    
+//     const answers = gm(response)
+//     writeToFile("README.md", answers)
+//     console.log(writeToFile)
+// })
+
+// // function to write README file
+// function writeToFile(fileName, data) {
+//     // console.log(fileName, data)
+//     fs.writeFile(fileName, data, function (err) {
+//         if (err) {
+//             throw err;
+//         };
+        
+//     })
+// }
