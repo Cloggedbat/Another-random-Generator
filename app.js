@@ -35,18 +35,37 @@ const { async } = require("rxjs");
             choices: [
                 'Engineer',
                 'Intern',
-                'Manager', 
+                'Manager',
+                'Employee' 
             ],
-            name: 'posititon '
+            name: 'role'
         },
+        {
+            type: "input",
+            message: "What is the enployees number?",
+            name: 'employeenum',
+            // look into validations 
+        },
+        {
+            type: "input",
+            message: "What is the enployees name?",
+            name:"name",
+            // look into validations 
+        },
+
+
     ])
     .then((data) => {
+    
+        // var input = render(data)
         name = data.name;
         id = data.id;
-        title = data.title;
+        role = data.role;
         email = data.email;
         console.log(data.name)
-    
+        console.log(data.posititon)
+        console.log(data.employeenum)
+        // writetofile('intern.html')
     });
    
 
