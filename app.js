@@ -2,7 +2,7 @@
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-const HTMLpg = require("./templets/main.html")
+// const HTMLpg = require("./templets/main.html")
 
 const inquirer = require("inquirer");
 const path = require("path");
@@ -12,15 +12,23 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const { async } = require("rxjs");
 
-const appStart = () => {
+ async function start() {
     // add what the team requirerments are/ how many are needed
     console.log('Lets make a team')    
-    inquirer
+    
+    await inquirer
     .prompt ([
         
         // this will prompt you to pick the position needed for the task
         // I will need to find a way to have it log to the prospective position
+        {
+            type: "input",
+            message: "What is the enployees name?",
+            name:"name",
+            // look into validations 
+        },
         {
             type: "list",
             message: "What position are you looking for?",
@@ -31,15 +39,19 @@ const appStart = () => {
             ],
             name: 'posititon '
         },
-        {
-            type: "input",
-            message: "What is the Interns name?",
-            name:"internsName",
-            // look into validations 
-        },
     ])
-}
+    .then((data) => {
+        name = data.name;
+        id = data.id;
+        title = data.title;
+        email = data.email;
+        console.log(data.name)
+    
+    });
+   
 
+}
+start();
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
