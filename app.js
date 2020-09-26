@@ -36,7 +36,7 @@ const { async } = require("rxjs");
                 'Engineer',
                 'Intern',
                 'Manager',
-                'Employee' 
+                
             ],
             name: 'role'
         },
