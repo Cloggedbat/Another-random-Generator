@@ -96,24 +96,32 @@ async function start() {
         
         
         
-        .then((responce) => {
-            // var input = render(employees)
             
-            
-            var reset = response.more
-                if (reset === "Yes") {
-                    start();
-                };
-
-
-            const manager = new Manager(responce.name, responce.id, responce.email);
-            
-
-        // const intern = new Intern(responce.name, responce.id, responce.email);
-
-
-        // const engineer = new Engineer(responce.name, responce.id, responce.email);
-
+            .then(function(responce){
+                if (responce.role === "Manager"){
+                    const manager = new Manager(responce.name, responce.id, responce.email, responce.officeNumber);
+                 
+                    enployees.push(manager)
+     
+                } else if  (responce.role === "Engineer"){
+                    
+                    const engineer = new Engineer(responce.name, responce.id, responce.email, responce.Github);
+              
+                 enployees.push(engineer)
+                } else if  (responce.role === "Intern"){
+                    
+                 const intern = new Intern(responce.name, responce.id, responce.email, responce.school);
+           
+              enployees.push(engineer)
+             } else {
+                 const renderEmployee = render(enployees);
+                 fs.writeFile(outputPath, renderEmployee, function (err){
+                     if (err){
+                         return(err);
+                     }
+                 })
+     
+             }    
 
         id = responce.id;
         role = responce.role;
