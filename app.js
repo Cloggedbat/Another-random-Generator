@@ -14,15 +14,15 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 const { async } = require("rxjs");
-const enployees = []
 
+const eployees = []
 
 
 async function start() {
     // add what the team requirerments are/ how many are needed
     console.log('Lets make a team')
 
-    await inquirer
+    inquirer
         .prompt([
 
             // this will prompt you to pick the position needed for the task
@@ -82,13 +82,20 @@ async function start() {
         ])
 
 
-        .then(function (responce) {
 
+
+        
+        .then(async (responce) => {
             // var input = render(employees)
             const manager = new Manager(responce.name, responce.id, responce.email);
-            // const  intern = new Intern(data.name, data.id, data.email);
-            // const employee = new Employee(data.name, data.id, data.email);
-
+            
+            
+            const intern = new Intern(responce.name, responce.id, responce.email);
+            
+            
+            const engineer = new Engineer(responce.name, responce.id, responce.email);
+            
+            
             id = responce.id;
             role = responce.role;
             email = responce.email;
@@ -98,12 +105,14 @@ async function start() {
             console.log(responce.id)
             // writetofile('intern.html')
         });
+    }
 
 
-}
+start();
 
-async function eployees() {
-    const data = await inquirer.prompt
+
+ function nexteployees() {
+    const data = inquirer.prompt
         ([
             {
                 type: "list",
@@ -118,9 +127,12 @@ async function eployees() {
 
             }
         ])
+    if (data.more === "Yes") {
+        start();
+    }
 }
+nexteployees()
 
-start();
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
