@@ -89,20 +89,25 @@ async function start() {
                         "Yes",
                         "No"
                     ]
-
+                
             },
         ])
-             if (data.more === "Yes") {
-                start();
-            };
-
-
-
+        
+        
+        
         
         .then((responce) => {
-        // var input = render(employees)
-        const manager = new Manager(responce.name, responce.id, responce.email);
+            // var input = render(employees)
+            
+            
+            var reset = response.more
+                if (reset === "Yes") {
+                    start();
+                };
 
+
+            const manager = new Manager(responce.name, responce.id, responce.email);
+            
 
         // const intern = new Intern(responce.name, responce.id, responce.email);
 
