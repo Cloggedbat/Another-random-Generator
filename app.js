@@ -2,6 +2,7 @@
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+const Employee = require("./lib/Employee.js")
 // const HTMLpg = require("./templets/main.html")
 
 const inquirer = require("inquirer");
@@ -30,6 +31,12 @@ const { async } = require("rxjs");
             // look into validations 
         },
         {
+            type: "input",
+            message: "What is the enployees number?",
+            name: 'id',
+            // look into validations 
+        },
+        {
             type: "list",
             message: "What position are you looking for?",
             choices: [
@@ -39,35 +46,31 @@ const { async } = require("rxjs");
                 
             ],
             name: 'role'
-        },
+        }, 
         {
             type: "input",
-            message: "What is the enployees number?",
-            name: 'employeenum',
+            message: "What is the enployees email",
+            name: 'email',
             // look into validations 
         },
-        {
-            type: "input",
-            message: "What is the enployees name?",
-            name:"name",
-            // look into validations 
-        },
-
+    
 
     ])
+
+    
     .then((data) => {
     
         // var input = render(data)
-        name = data.name;
+        
         id = data.id;
         role = data.role;
         email = data.email;
         console.log(data.name)
         console.log(data.role)
-        console.log(data.employeenum)
+        console.log(data.id)
         // writetofile('intern.html')
     });
-   
+    
 
 }
 start();
