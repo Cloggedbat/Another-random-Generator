@@ -63,7 +63,7 @@ const { async } = require("rxjs");
         role = data.role;
         email = data.email;
         console.log(data.name)
-        console.log(data.posititon)
+        console.log(data.role)
         console.log(data.employeenum)
         // writetofile('intern.html')
     });
