@@ -52,22 +52,43 @@ const { async } = require("rxjs");
             message: "What is the enployees email",
             name: 'email',
             // look into validations 
+        }, {
+            type: "input",
+            message: "What is your office number",
+            name: 'officeNumber',
+            when: function (response){
+                return response.role === 'Manager'
+            }
+        }, {
+            type: "input",
+            message: "What school did you go to intern shit?",
+            name: 'school',
+            when: function (response){
+                return response.role === 'intern'
+            }        }, {
+            type: "input",
+            message: "What is the enployees email",
+            name: 'email',
+            // look into validations 
         },
-    
-
+      
     ])
 
     
-    .then((data) => {
+    .then(function(responce) {
     
-        // var input = render(data)
-        
-        id = data.id;
-        role = data.role;
-        email = data.email;
-        console.log(data.name)
-        console.log(data.role)
-        console.log(data.id)
+        // var input = render(employees)
+        const manager = new Manager(responce.name, responce.id, responce.email);
+        // const  intern = new Intern(data.name, data.id, data.email);
+        // const employee = new Employee(data.name, data.id, data.email);
+
+        id = responce.id;
+        role = responce.role;
+        email = responce.email;
+        console.log(responce.name)
+        console.log(responce.role)
+        console.log(responce.id)
+        console.log(responce.id)
         // writetofile('intern.html')
     });
     
