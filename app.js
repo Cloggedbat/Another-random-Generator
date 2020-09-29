@@ -14,86 +14,112 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 const { async } = require("rxjs");
+const enployees = []
 
- async function start() {
+
+
+async function start() {
     // add what the team requirerments are/ how many are needed
-    console.log('Lets make a team')    
-    
+    console.log('Lets make a team')
+
     await inquirer
-    .prompt ([
-        
-        // this will prompt you to pick the position needed for the task
-        // I will need to find a way to have it log to the prospective position
-        {
-            type: "input",
-            message: "What is the enployees name?",
-            name:"name",
-            // look into validations 
-        },
-        {
-            type: "input",
-            message: "What is the enployees number?",
-            name: 'id',
-            // look into validations 
-        },
-        {
-            type: "list",
-            message: "What position are you looking for?",
-            choices: [
-                'Engineer',
-                'Intern',
-                'Manager',
-                
-            ],
-            name: 'role'
-        }, 
-        {
-            type: "input",
-            message: "What is the enployees email",
-            name: 'email',
-            // look into validations 
-        }, {
-            type: "input",
-            message: "What is your office number",
-            name: 'officeNumber',
-            when: function (response){
-                return response.role === 'Manager'
-            }
-        }, {
-            type: "input",
-            message: "What school did you go to intern shit?",
-            name: 'school',
-            when: function (response){
-                return response.role === 'intern'
-            }        }, {
-            type: "input",
-            message: "What is the enployees email",
-            name: 'email',
-            // look into validations 
-        },
-      
-    ])
+        .prompt([
 
-    
-    .then(function(responce) {
-    
-        // var input = render(employees)
-        const manager = new Manager(responce.name, responce.id, responce.email);
-        // const  intern = new Intern(data.name, data.id, data.email);
-        // const employee = new Employee(data.name, data.id, data.email);
+            // this will prompt you to pick the position needed for the task
+            // I will need to find a way to have it log to the prospective position
+            {
+                type: "input",
+                message: "What is the enployees name?",
+                name: "name",
+                // look into validations 
+            },
+            {
+                type: "input",
+                message: "What is the enployees number?",
+                name: 'id',
+                // look into validations 
+            },
+            {
+                type: "list",
+                message: "What position are you looking for?",
+                choices: [
+                    'Engineer',
+                    'Intern',
+                    'Manager',
 
-        id = responce.id;
-        role = responce.role;
-        email = responce.email;
-        console.log(responce.name)
-        console.log(responce.role)
-        console.log(responce.id)
-        console.log(responce.id)
-        // writetofile('intern.html')
-    });
-    
+                ],
+                name: 'role'
+            },
+            {
+                type: "input",
+                message: "What is the enployees email",
+                name: 'email',
+                // look into validations 
+            }, {
+                type: "input",
+                message: "What is your office number",
+                name: 'officeNumber',
+                when: function (response) {
+                    return response.role === 'Manager'
+                }
+            }, {
+                type: "input",
+                message: "What school did you go to intern shit?",
+                name: 'school',
+                when: function (response) {
+                    return response.role === 'intern'
+                }
+            },
+            {
+                type: "input",
+                message: "Yo Github motherfucker?",
+                name: 'Github',
+                when: function (response) {
+                    return response.role === 'Engineer'
+                }
+            },
+
+        ])
+
+
+        .then(function (responce) {
+
+            // var input = render(employees)
+            const manager = new Manager(responce.name, responce.id, responce.email);
+            // const  intern = new Intern(data.name, data.id, data.email);
+            // const employee = new Employee(data.name, data.id, data.email);
+
+            id = responce.id;
+            role = responce.role;
+            email = responce.email;
+            console.log(responce.name)
+            console.log(responce.role)
+            console.log(responce.id)
+            console.log(responce.id)
+            // writetofile('intern.html')
+        });
+
 
 }
+
+async function eployees() {
+    const data = await inquirer.prompt
+        ([
+            {
+                type: "list",
+                message: "are there more employees to add?",
+                name: "more",
+                choices:
+
+                    [
+                        "Yes",
+                        "No"
+                    ]
+
+            }
+        ])
+}
+
 start();
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -120,9 +146,9 @@ start();
 
 // I belive that this is all bing dun in htmlRender.js
 // .then(function(response){
-    
+
 //     console.log(response)
-    
+
 //     const answers = gm(response)
 //     writeToFile("README.md", answers)
 //     console.log(writeToFile)
@@ -135,6 +161,6 @@ start();
 //         if (err) {
 //             throw err;
 //         };
-        
+
 //     })
 // }
