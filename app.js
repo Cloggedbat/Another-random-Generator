@@ -22,7 +22,7 @@ async function start() {
     // add what the team requirerments are/ how many are needed
     console.log('Lets make a team')
 
-    inquirer
+    await inquirer
         .prompt([
 
             // this will prompt you to pick the position needed for the task
@@ -79,41 +79,6 @@ async function start() {
                 }
             },
 
-        ])
-
-
-
-
-        
-        .then(async (responce) => {
-            // var input = render(employees)
-            const manager = new Manager(responce.name, responce.id, responce.email);
-            
-            
-            const intern = new Intern(responce.name, responce.id, responce.email);
-            
-            
-            const engineer = new Engineer(responce.name, responce.id, responce.email);
-            
-            
-            id = responce.id;
-            role = responce.role;
-            email = responce.email;
-            console.log(responce.name)
-            console.log(responce.role)
-            console.log(responce.id)
-            console.log(responce.id)
-            // writetofile('intern.html')
-        });
-    }
-
-
-start();
-
-
- function nexteployees() {
-    const data = inquirer.prompt
-        ([
             {
                 type: "list",
                 message: "are there more employees to add?",
@@ -125,13 +90,44 @@ start();
                         "No"
                     ]
 
-            }
+            },
         ])
-    if (data.more === "Yes") {
-        start();
-    }
+             if (data.more === "Yes") {
+                start();
+            };
+
+
+
+        
+        .then((responce) => {
+        // var input = render(employees)
+        const manager = new Manager(responce.name, responce.id, responce.email);
+
+
+        // const intern = new Intern(responce.name, responce.id, responce.email);
+
+
+        // const engineer = new Engineer(responce.name, responce.id, responce.email);
+
+
+        id = responce.id;
+        role = responce.role;
+        email = responce.email;
+        console.log(responce.name)
+        console.log(responce.role)
+        console.log(responce.id)
+        console.log(responce.id)
+        // writetofile('intern.html')
+    });
 }
-nexteployees()
+
+
+start();
+
+
+//  function nexteployees() {
+//     const data = inquirer.prompt
+// }
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
