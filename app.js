@@ -88,17 +88,16 @@ async function start() {
         
         
         
-        
+    
             
             .then(function(responce){
                 
-                
-                
                 if (responce.role === "Manager"){
+                    
                     const manager = new Manager(responce.name, responce.id, responce.email, responce.officeNumber);
                  
                     enployees.push(manager)
-     
+                    
                 } else if  (responce.role === "Engineer"){
                     
                     const engineer = new Engineer(responce.name, responce.id, responce.email, responce.Github);
@@ -120,7 +119,7 @@ async function start() {
              
              else {
                  const renderEmployees = render(enployees);
-                 fs.writeFile(output, renderEmployees, function (err){
+                 fs.writeFile(outputPath, renderEmployees, function (err){
                      if (err){
                          return(err);
                      }
@@ -129,11 +128,10 @@ async function start() {
              }    
 
       
-        console.log(render)
         console.log(responce.role)
         console.log(responce.id)
         console.log(responce.id)
-        // writetofile('intern.html')
+    
     });
 }
 
@@ -169,22 +167,3 @@ start();
 // for the provided `render` function to work! ```
 
 // I belive that this is all bing dun in htmlRender.js
-// .then(function(response){
-
-//     console.log(response)
-
-//     const answers = gm(response)
-//     writeToFile("README.md", answers)
-//     console.log(writeToFile)
-// })
-
-// // function to write README file
-// function writeToFile(fileName, data) {
-//     // console.log(fileName, data)
-//     fs.writeFile(fileName, data, function (err) {
-//         if (err) {
-//             throw err;
-//         };
-
-//     })
-// }
