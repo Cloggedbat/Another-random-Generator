@@ -15,7 +15,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 const { async } = require("rxjs");
 
-const eployees = []
+const enployees = []
 
 
 async function start() {
@@ -80,16 +80,9 @@ async function start() {
             },
 
             {
-                type: "list",
+                type: "confirm",
                 message: "are there more employees to add?",
                 name: "more",
-                choices:
-
-                    [
-                        "Yes",
-                        "No"
-                    ]
-                
             },
         ])
         
@@ -98,6 +91,9 @@ async function start() {
         
             
             .then(function(responce){
+                
+                
+                
                 if (responce.role === "Manager"){
                     const manager = new Manager(responce.name, responce.id, responce.email, responce.officeNumber);
                  
@@ -108,14 +104,23 @@ async function start() {
                     const engineer = new Engineer(responce.name, responce.id, responce.email, responce.Github);
               
                  enployees.push(engineer)
-                } else if  (responce.role === "Intern"){
+                
+                } 
+                
+                else if  (responce.role === "Intern"){
                     
                  const intern = new Intern(responce.name, responce.id, responce.email, responce.school);
            
-              enployees.push(engineer)
-             } else {
-                 const renderEmployee = render(enployees);
-                 fs.writeFile(outputPath, renderEmployee, function (err){
+              enployees.push(intern)
+             }
+             
+             if (responce.more === true) {
+                start()
+             }
+             
+             else {
+                 const renderEmployees = render(enployees);
+                 fs.writeFile(output, renderEmployees, function (err){
                      if (err){
                          return(err);
                      }
@@ -123,10 +128,8 @@ async function start() {
      
              }    
 
-        id = responce.id;
-        role = responce.role;
-        email = responce.email;
-        console.log(responce.name)
+      
+        console.log(render)
         console.log(responce.role)
         console.log(responce.id)
         console.log(responce.id)
