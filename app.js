@@ -52,27 +52,27 @@ async function start() {
             },
             {
                 type: "input",
-                message: "What is the enployees email",
+                message: "What is the enployees email?",
                 name: 'email',
                 // look into validations 
             }, {
                 type: "input",
-                message: "What is your office number",
+                message: "What is your office number?",
                 name: 'officeNumber',
                 when: function (response) {
                     return response.role === 'Manager'
                 }
             }, {
                 type: "input",
-                message: "What school did you go to intern shit?",
+                message: "What school did you go to intern?",
                 name: 'school',
                 when: function (response) {
-                    return response.role === 'intern'
+                    return response.role === 'Intern'
                 }
             },
             {
                 type: "input",
-                message: "Yo Github motherfucker?",
+                message: "Whats your Github acount?",
                 name: 'Github',
                 when: function (response) {
                     return response.role === 'Engineer'
